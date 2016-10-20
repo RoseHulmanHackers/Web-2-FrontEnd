@@ -30,30 +30,16 @@ var formConfig = function () {
                 email: {
                     identifier: 'email',
                     rules: [
-                        {
-                            type: 'email',
-                            prompt: 'Please enter a valid e-mail'
-                        }
                     ]
                 },
                 password: {
                     identifier: 'password',
                     rules: [
-                        {
-                            type: 'empty',
-                            prompt: 'Please enter a password'
-                        },
-                        {
-                            type: 'minLength[6]',
-                            prompt: 'Your password must be at least {ruleValue} characters'
-                        }
                     ]
                 }
             },
             onSuccess: function (event, fields) {
                 //what happens when the form is filed in
-                setToken("email", fields.email);//store the users email in rootscope
-                window.location.href = 'dashboard.html';
                 console.log("signed in", fields.email);
             },
             onFailure: function (formErrors, fields) {
