@@ -1,27 +1,26 @@
 $(document)
     .ready(function () {
         setup();
-        // // fix menu when passed
-        // $('.masthead')
-        //     .visibility({
-        //         once: false,
-        //         onBottomPassed: function () {
-        //             $('.fixed.menu').transition('fade in');
-        //         },
-        //         onBottomPassedReverse: function () {
-        //             $('.fixed.menu').transition('fade out');
-        //         }
-        //     })
-        //     ;
 
-        // // create sidebar and attach to menu open
-        // $('.ui.sidebar')
-        //     .sidebar('attach events', '.toc.item')
-        //     ;
+    });
 
-    })
-    ;
-//funciton(){$('#loginModal').modal('show');}
+var menuSetu = function () {
+    $('.masthead')
+        .visibility({
+            once: false,
+            onBottomPassed: function () {
+                $('.fixed.menu').transition('fade in');
+            },
+            onBottomPassedReverse: function () {
+                $('.fixed.menu').transition('fade out');
+            }
+        })
+        ;
+
+    // create sidebar and attach to menu open
+    $('.ui.sidebar')
+        .sidebar('attach events', '.toc.item');
+}
 
 var formConfig = function () {
     $('#loginForm')
@@ -53,7 +52,8 @@ var formConfig = function () {
             },
             onSuccess: function (event, fields) {
                 //what happens when the form is filed in
-                setToken("email", fileds.email);//store the users email in rootscope
+                setToken("email", fields.email);//store the users email in rootscope
+                window.location.href = 'dashboard.html';
                 console.log("signed in", fields.email);
             },
             onFailure: function (formErrors, fields) {
@@ -81,10 +81,10 @@ var modalConfig = function () {
         }
     });
     $('#loginModal') //Attachs the modal open function to all objects with the class .login-btn
-     .modal('attach events', '.login-btn', 'show');
+        .modal('attach events', '.login-btn', 'show');
 }
 
-var setup = function(){
+var setup = function () {
     formConfig();
     modalConfig();
 }
